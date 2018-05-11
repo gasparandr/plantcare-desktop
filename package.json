@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && electron ./_bin/main.js"
+    "start": "npm run build && electron ./_bin/app.js"
   },
   "dependencies": {
     "electron": "^2.0.0"
