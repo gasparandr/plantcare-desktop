@@ -35,6 +35,7 @@ var Core;
 })(Core || (Core = {}));
 var Core;
 (function (Core) {
+    var Notifications = Constants.Notifications;
     var Proxy = (function () {
         function Proxy() {
             this.NAME = "Proxy";
@@ -42,6 +43,23 @@ var Core;
             this.address = "";
         }
         Proxy.prototype.login = function (email, password) {
+            var self = this;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.address + "/login", true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
+                var response = JSON.parse(this.responseText);
+                self.userId = response.userId;
+                console.log(response);
+                if (response.success) {
+                    console.log("LOGIN SUCCESS");
+                    eventDispatcher.sendNotification(Notifications.LOGIN_SUCCESS, response);
+                }
+                else {
+                    console.log("LOGIN FAILURE! " + response.message);
+                }
+            };
+            xhr.send(JSON.stringify({ email: email, password: password }));
         };
         Proxy.prototype.getPlants = function (plantGroupId) {
         };
@@ -118,13 +136,10 @@ var Core;
 var Observer = Core.Observer;
 var Proxy = Core.Proxy;
 var ViewManager = Core.ViewManager;
-var EntryPoint;
-(function (EntryPoint) {
-    console.info("Initiating plantcare core components");
-    var eventDispatcher = new Observer();
-    var connection = new Proxy();
-    var viewManager = new ViewManager();
-})(EntryPoint || (EntryPoint = {}));
+console.info("Initiating plantcare core components");
+var eventDispatcher = new Observer();
+var connection = new Proxy();
+var viewManager = new ViewManager();
 var Components;
 (function (Components) {
     var Authentication = (function () {

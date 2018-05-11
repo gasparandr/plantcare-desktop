@@ -2,6 +2,8 @@
 
 namespace Core {
 
+    import Notifications = Constants.Notifications;
+
     export class Proxy implements IProxy{
         public NAME: string = "Proxy";
         private address: string;
@@ -14,7 +16,29 @@ namespace Core {
 
 
         public login(email: string, password: string): void {
+            const self = this;
 
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', this.address + "/login", true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
+
+                let response = JSON.parse( this.responseText );
+
+                self.userId = response.userId;
+
+                console.log(response);
+
+                if ( response.success ) {
+                    console.log( "LOGIN SUCCESS" );
+                    eventDispatcher.sendNotification( Notifications.LOGIN_SUCCESS, response )
+                } else {
+                    console.log("LOGIN FAILURE! " + response.message);
+                }
+
+            };
+
+            xhr.send(JSON.stringify({ email: email, password: password }));
         }
 
         public getPlants(plantGroupId: string): void {
