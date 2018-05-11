@@ -7,8 +7,8 @@ namespace Core {
         login(email: string, password: string): void;
         getPlants(plantGroupId: string): void;
         getPlantGroups(): void;
-        invite(): void;
-        getInvites(): void;
+        invite(plantGroupId: string): void;
+        getInvitations(): void;
         waterPlant(plantId: string): void;
         waterPlantGroup(plantGroupId: string): void;
         pingForInvites(): void;
