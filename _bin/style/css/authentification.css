@@ -1,5 +1,17 @@
 /* Log in / Sign up */
-body{
+.authentification {
+    border: 1px solid gray;
+    padding: 30px;
+    max-width: 500px;
+}
 
 
+.test .one{
+    height: 20px;
+    background-color: red;
+}
+
+.test .three{
+    height: 20px;
+    background-color: red;
 }

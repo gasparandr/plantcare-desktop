@@ -2,12 +2,28 @@ body{
     cursor: default;
 }
 
+*{
+    box-sizing: border-box;
+}
 
+a,
 p,
+ul,
 span,
-h1, h2, h3, h4, h5, h6{
+input,
+button,
+h1, h2, h3, h4, h5, h6,
+body, html{
     margin: 0;
     padding: 0;
+}
+
+a{
+    cursor: pointer;
+}
+
+button{
+    border: none;
 }
 
 .inline{
@@ -16,6 +32,10 @@ h1, h2, h3, h4, h5, h6{
 
 .block{
     display: block;
+}
+
+.list-clear{
+    list-style-type: none;
 }
 
 
@@ -88,6 +108,21 @@ h1, h2, h3, h4, h5, h6{
 }
 .g-100{
     width: 100%;
+}
+
+.g-33{
+    width: 33.333333%;
+}
+
+.poz-center{
+    align-items: center;
+}
+
+.poz-center.left{
+    justify-content: flex-start;
+}
+.poz-center.right{
+    justify-content: flex-start;
 }
 
 /* END Grid system */
