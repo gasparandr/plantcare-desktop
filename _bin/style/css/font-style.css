@@ -1,1 +1,11 @@
-/* Font style */
+/* Font size */
+
+/* Font-size - Line height */
+
+/*12px -15px*/
+.f-12-15{
+    font-size: 12px;
+    line-height: 15px;
+}
+
+/* END Font size */

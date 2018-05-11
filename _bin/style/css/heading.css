@@ -1,3 +1,23 @@
-/* Heading */
+.heading{
+    background-color: rgba(255,255,255, 0.5);
+}
 
-/* END Heading */
+.heading-container{
+    padding: 3px 20px 4px 20px;
+}
+
+/* Logo */
+.heading-logo svg{
+    height: 35px;
+}
+/* END Logo */
+
+/* Heading Landing*/
+.heading-landing li a{
+    padding: 6px 14px;
+}
+
+.heading-landing-btn-sign-up:hover{
+    background-color: rgba(250, 60, 101, 0.9);
+}
+/* END Heading Landing*/

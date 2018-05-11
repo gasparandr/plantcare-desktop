@@ -1,5 +1,7 @@
 body{
     cursor: default;
+    font-family: 'montserratregular';
+    color: #233B30;
 }
 
 *{
@@ -20,6 +22,7 @@ body, html{
 
 a{
     cursor: pointer;
+    display: inline-block;
 }
 
 button{
@@ -66,14 +69,35 @@ button{
 
 
 /* Font color */
-
+.f-ffffff{
+    color: #ffffff;
+}
+.f-233B30{
+    color: #233B30;
+}
+.f-FA3C65{
+    color: #FA3C65;
+}
 /* END Font color */
 
-
 /* Background color */
-
+.bg-233B30{
+    background-color: #233B30;
+}
+.bg-ffffff{
+    background-color: #ffffff;
+}
+.bg-FA3C65{
+    background-color: #FA3C65;
+}
 /* END Background color */
 
+
+/* Border radius */
+.rad-13-5{
+    border-radius: 13.5px;
+}
+/* Border radius */
 
 /* Grid  system */
 .grid{
@@ -118,10 +142,10 @@ button{
     align-items: center;
 }
 
-.poz-center.left{
+.poz-left{
     justify-content: flex-start;
 }
-.poz-center.right{
+.poz-right{
     justify-content: flex-start;
 }
 
