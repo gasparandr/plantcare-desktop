@@ -1,0 +1,22 @@
+{
+  "name": "plantcare-desktop",
+  "version": "1.0.0",
+  "description": "Typescript ElectronJS",
+  "main": "index.js",
+  "author": "Andrei",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && electron ./_bin/main.js"
+  },
+  "dependencies": {
+    "electron": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cli": "^2.0.1",
+    "gulp-shell": "^0.6.5",
+    "gulp-typescript": "^4.0.2",
+    "typescript": "^2.8.3"
+  }
+}
