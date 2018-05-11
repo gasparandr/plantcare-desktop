@@ -2,17 +2,18 @@
 
 namespace Core {
 
-    export class Proxy {
+    export class Proxy implements IProxy{
         public NAME: string = "Proxy";
         private address: string;
         private userId: string;
 
         constructor() {
+            console.info( this.NAME + " has been initiated");
             this.address = "";
         }
-        
 
-        public login(username: string, password: string): void {
+
+        public login(email: string, password: string): void {
 
         }
 

@@ -10,6 +10,7 @@ namespace Core {
         public NAME: string = "ViewManager";
 
         constructor() {
+            console.info( this.NAME + " has been initiated");
 
         }
 

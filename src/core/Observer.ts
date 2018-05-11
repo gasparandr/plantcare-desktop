@@ -1,13 +1,13 @@
 
 
 namespace Core {
-    export class Observer {
-        public static NAME: string = "Observer";
+    export class Observer implements IObserver{
+        public NAME: string = "Observer";
         private notificationInterests: any;
 
 
         constructor() {
-
+            console.info( this.NAME + " has been initiated");
             this.notificationInterests = {};
         }
 

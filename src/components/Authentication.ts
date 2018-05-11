@@ -6,7 +6,7 @@ namespace Components {
         public NAME: string = "Authentication";
 
         constructor() {
-
+            console.info( this.NAME + " has been initiated");
         }
 
 
