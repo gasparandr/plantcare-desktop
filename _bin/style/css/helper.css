@@ -1,0 +1,93 @@
+body{
+    cursor: default;
+}
+
+
+p,
+span,
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 0;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.block{
+    display: block;
+}
+
+
+/* Text align */
+.center{
+    text-align: center;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+/* END Text align */
+
+
+/* Text transform */
+.capit{
+    text-transform: capitalize;
+}
+.lower{
+    text-transform: lowercase;
+}
+.upper{
+    text-transform: uppercase;
+}
+/* END Text transform */
+
+
+/* Font color */
+
+/* END Font color */
+
+
+/* Background color */
+
+/* END Background color */
+
+
+/* Grid  system */
+.grid{
+    display: flex;
+}
+.g-10{
+    width: 10%;
+}
+.g-20{
+    width: 20%;
+}
+.g-30{
+    width: 30%;
+}
+.g-40{
+    width: 40%;
+}
+.g-50{
+    width: 50%;
+}
+.g-60{
+    width: 60%;
+}
+.g-70{
+    width: 70%;
+}
+.g-80{
+    width: 80%;
+}
+.g-90{
+    width: 90%;
+}
+.g-100{
+    width: 100%;
+}
+
+/* END Grid system */
