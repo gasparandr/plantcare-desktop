@@ -47,7 +47,16 @@ namespace Components {
                 this.notification.classList.toggle("active");
                 this.notification.classList.remove("notification-alert");
                 this.notificationDropDown.style.display = this.notificationDropDown.style.display === 'none' ? 'block' : 'none';
-            })
+            });
+
+            this.notificationDropDown.addEventListener( "click", (e) => {
+                e.stopPropagation();
+            });
+
+            window.addEventListener( "click", () => {
+                this.notificationDropDown.style.display = "none";
+                this.notification.classList.remove("active");
+            });
         }
 
         public addInvitation(invitation: any): void {
@@ -107,28 +116,7 @@ namespace Components {
         }
 
         public injectHTML(): void {
-            this.container.innerHTML = `<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>PlantCare Desktop App - Authentification </title>
-                
-                
-                    <link rel="stylesheet" href="../_bin/style/css/helper.css">
-                    <link rel="stylesheet" href="../_bin/style/css/font-face.css">
-                    <link rel="stylesheet" href="../_bin/style/css/font-style.css">
-                
-                    <!-- Component -->
-                    <link rel="stylesheet" href="../_bin/style/css/heading.css">
-                    <!-- END Component -->
-                
-                
-                </head>
-                <body>
-                
-                
-                <!-- Heading-->
-                <header id="heading" class="heading g-100">
+            this.container.innerHTML = `
                     <div id="heading-container" class="heading-container">
                         <div class="grid poz-center">
                 
@@ -311,17 +299,7 @@ namespace Components {
                                 <!-- END Header after signed user-->
                             </div>
                         </div>
-                    </div>
-                
-                
-                
-                
-                </header>
-                <!-- END Heading-->
-                
-                
-                </body>
-                </html>`;
+                    </div>`;
         }
 
         private switchHeaderContent(): void {
