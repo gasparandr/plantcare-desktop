@@ -132,9 +132,13 @@ namespace Core {
         }
 
         public pingForInvites(): void {
+            console.info("Ping for invites started");
             const self = this;
 
-            this.ping = setTimeout( function () {
+            this.ping = setInterval( function () {
+
+                console.info( "Connection pinging for invitations every " + self.pingDelay + " ms" );
+
                 let xhr = new XMLHttpRequest();
                 xhr.open('GET', self.address + "/invitations/" + self.userId, true);
                 xhr.setRequestHeader('Content-type', 'application/json');
@@ -148,11 +152,11 @@ namespace Core {
                 };
 
                 xhr.send();
-            }, this.pingDelay );
+            }, self.pingDelay );
         }
 
         public cancelPing(): void {
-            clearTimeout( this.ping );
+            clearInterval( this.ping );
         }
 
     }

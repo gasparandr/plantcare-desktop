@@ -7,13 +7,14 @@ var Core;
             this.notificationInterests = {};
         }
         Observer.prototype.registerEventInterest = function (entity, notification) {
+            console.info("Registering " + entity.NAME + " for notification " + notification);
             if (!this.notificationInterests[notification]) {
                 this.notificationInterests[notification] = [];
                 this.notificationInterests[notification].push(entity);
             }
             else {
                 for (var i = 0; i < this.notificationInterests[notification].length; i++) {
-                    if (this.notificationInterests[notification][i].NAME = entity.NAME) {
+                    if (this.notificationInterests[notification][i].NAME == entity.NAME) {
                         console.warn(entity.NAME + " is already registered to the notification " + notification);
                         return;
                     }
@@ -141,8 +142,10 @@ var Core;
             xhr.send();
         };
         Proxy.prototype.pingForInvites = function () {
+            console.info("Ping for invites started");
             var self = this;
-            this.ping = setTimeout(function () {
+            this.ping = setInterval(function () {
+                console.info("Connection pinging for invitations every " + self.pingDelay + " ms");
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', self.address + "/invitations/" + self.userId, true);
                 xhr.setRequestHeader('Content-type', 'application/json');
@@ -152,10 +155,10 @@ var Core;
                     eventDispatcher.sendNotification(Notifications.INVITATIONS, response);
                 };
                 xhr.send();
-            }, this.pingDelay);
+            }, self.pingDelay);
         };
         Proxy.prototype.cancelPing = function () {
-            clearTimeout(this.ping);
+            clearInterval(this.ping);
         };
         return Proxy;
     }());
@@ -227,16 +230,58 @@ var Components;
             this.container.innerHTML = "<!-- Authentification component -->\n                    <div id=\"authentification\" class=\"authentification center rad-15\">\n                        <!-- Authentification component - Header -->\n                        <div id=\"authentification-header\" class=\"authentification-header\">\n                            <div id=\"authentification-header-container\" class=\"authentification-header-container\">\n                                <ul class=\"list-clear\">\n                                    <li class=\"authentification-header-item inline f-10-13\">\n                                        <a id=\"authentification-log-in-btn\" class=\"authentification-log-in-btn authentification-btn capit active\">log in</a>\n                                    </li>\n                                    <li class=\"authentification-header-item inline f-10-13\">\n                                        <a id=\"authentification-sign-up-btn\" class=\"authentification-sign-up-btn authentification-btn capit\">sign up</a>\n                                    </li>\n                                </ul>\n                            </div>\n                        </div>\n                        <!-- END Authentification component - Header -->\n                    \n                        <!-- Authentification component - Container -->\n                        <div id=\"authentification-container\" class=\"authentification-container\">\n                            <!-- Authentification component - Container - Log In -->\n                            <div id=\"authentification-log-in\" class=\"authentification-log-in authentification-content\">\n                                <div id=\"authentification-wrapper\" class=\"authentification-wrapper\">\n                                    <h3 class=\"authentification-title f-12-15 semi-bold\">Welcome Back!</h3>\n                                    <p class=\"f-9-13 f-777B79 desc\">Arcu aptent placerat blandit quis, lectus sit orci nec ut. Eleifend ut mauris</p>\n                                    <div class=\"form\">\n                                        <div class=\"row\">\n                                            <input id=\"authentification-log-in-email\" class=\"authentification-log-in-email g-100 rad-4-5 f-12-15 input-icon email\" type=\"text\" placeholder=\"email\" required>\n                                        </div>\n                                        <div class=\"row\">\n                                            <input id=\"authentification-log-in-password\" class=\"authentification-log-in-password g-100 rad-4-5 f-12-15 input-icon password\" type=\"password\" placeholder=\"password\" required>\n                                        </div>\n                                        <div class=\"row\">\n                                            <div class=\"grid poz-center\">\n                                                <div class=\"g-60 left grid poz-center\">\n                                                    <div class=\"checkbox\">\n                                                        <input id=\"authentification-log-in-remember-me\" type=\"checkbox\" class=\"checkbox\" />\n                                                        <label class=\"rad-4-5 checkbox-mark\" for=\"checkbox\"></label>\n                                                        <span class=\"f-12-15 inline label-desc semi-bold\">Remember me</span>\n                                                    </div>\n                                                </div>\n                                                <div class=\"g-40 right \">\n                                                    <a id=\"authentification-log-in-forgot-password\" class=\"authentification-log-in-forgot-password f-9-11 f-34C197\">Forgot Password?</a>\n                                                </div>\n                                            </div>\n                                        </div>\n                                        <button id=\"authentification-log-in-submit\" class=\"authentification-log-in-submit authentification-submit-btn rad-4-5 g-100 bg-67E6CF-2D9DA1 f-ffffff capit semi-bold\">log in</button>\n                                    </div>\n                                </div>\n                                <div class=\"social-desc\">\n                                    <span class=\"f-777B79 f-9-13 inline\">or log in with Facebook, Twitter or Google</span>\n                                </div>\n                            </div>\n                            <!-- END Authentification component - Container - Log In -->\n                    \n                            <!-- Authentification component - Container - Sign up -->\n                            <div id=\"authentification-sign-up\" class=\"authentification-sign-up authentification-content\" style=\"display: none;\">\n                                <div class=\"authentification-wrapper\">\n                                    <h3 class=\"authentification-title f-12-15 semi-bold\">Create Your Account!</h3>\n                                    <p class=\"f-9-13 f-777B79 desc\">Arcu aptent placerat blandit quis, lectus sit orci nec ut. Eleifend ut mauris</p>\n                                    <div class=\"form\">\n                                        <div class=\"row\">\n                                            <input id=\"authentification-sign-up-name\" class=\"authentification-sign-up-name g-100 rad-4-5 f-12-15 input-icon name\" type=\"text\" placeholder=\"name\" required>\n                                        </div>\n                                        <div class=\"row\">\n                                            <input id=\"authentification-sign-up-email\" class=\"authentification-sign-up-email g-100 rad-4-5 f-12-15 input-icon email\" type=\"email\" placeholder=\"email\" required>\n                                        </div>\n                                        <div class=\"row\">\n                                            <input id=\"authentification-sign-up-password\" class=\"authentification-sign-up-password g-100 rad-4-5 f-12-15 input-icon password\" type=\"password\" placeholder=\"password\" required>\n                                        </div>\n                                        <button id=\"authentification-sign-up-submit\" class=\"authentification-sign-up-submit authentification-submit-btn rad-4-5 g-100 bg-67E6CF-2D9DA1 f-ffffff capit semi-bold\">sign up</button>\n                                    </div>\n                                </div>\n                                <div class=\"social-desc\">\n                                    <span class=\"f-777B79 f-9-13 inline\">or sign up with Facebook, Twitter or Google</span>\n                                </div>\n                            </div>\n                            <!-- END Authentification component - Container - Sign up -->\n                        </div>\n                        <!-- END  Authentification component - Container -->\n                    \n                        <!-- Authentification component - Footer -->\n                        <div class=\"authentification-footer\">\n                            <div class=\"authentification-footer-container\">\n                                <!-- Authentification component - Footer - Social Media -->\n                                <div id=\"authentification-footer-social-media\" class=\"authentification-footer-social-media inline\">\n                                    <ul class=\"list-clear\">\n                                        <li class=\"inline facebook\">\n                                            <a id=\"authentification-social-media-footer\" class=\"authentification-social-media-footer rad-18\">\n                                                <img src=\"../_bin/icons/icon-facebook.svg\" alt=\"\">\n                                            </a>\n                                        </li>\n                                        <li class=\"inline twitter\">\n                                            <a id=\"authentification-social-media-twitter\" class=\"authentification-social-media-twitter rad-18\">\n                                                <img src=\"../_bin/icons/icon-twitter.svg\" alt=\"\">\n                                            </a>\n                                        </li>\n                                        <li class=\"inline google\">\n                                            <a id=\"authentification-social-media-google\" class=\"authentification-social-media-google rad-18\">\n                                                <img src=\"../_bin/icons/icon-google.svg\" alt=\"\">\n                                            </a>\n                                        </li>\n                                    </ul>\n                                </div>\n                                <!-- END Authentification component - Footer - Social Media -->\n                            </div>\n                        </div>\n                        <!-- END Authentification component - Footer -->\n                    \n                    </div>\n                    <!-- END Authentification component -->";
         };
         Authentication.prototype.eventHandler = function (notification, data) {
+            switch (notification) {
+            }
         };
         return Authentication;
     }());
     Components.Authentication = Authentication;
+})(Components || (Components = {}));
+var Components;
+(function (Components) {
+    var Notifications = Constants.Notifications;
+    var Header = (function () {
+        function Header() {
+            this.NAME = "Header";
+            console.info(this.NAME + " has been initiated");
+            this.registerEventInterests();
+            this.container = document.getElementById("heading");
+            this.injectHTML();
+            this.registerEventListeners();
+        }
+        Header.prototype.registerEventInterests = function () {
+            eventDispatcher.registerEventInterest(this, Notifications.LOGIN_SUCCESS);
+            eventDispatcher.registerEventInterest(this, Notifications.INVITATIONS);
+        };
+        Header.prototype.registerEventListeners = function () {
+        };
+        Header.prototype.injectHTML = function () {
+            this.container.innerHTML = "";
+        };
+        Header.prototype.switchHeaderContent = function () {
+        };
+        Header.prototype.eventHandler = function (notification, data) {
+            switch (notification) {
+                case Notifications.LOGIN_SUCCESS:
+                    console.info("Header received login success");
+                    this.switchHeaderContent();
+                    connection.pingForInvites();
+                    break;
+                case Notifications.INVITATIONS:
+                default:
+                    break;
+            }
+        };
+        return Header;
+    }());
+    Components.Header = Header;
 })(Components || (Components = {}));
 var Core;
 (function (Core) {
     var Views = Constants.Views;
     var Notifications = Constants.Notifications;
     var Authentication = Components.Authentication;
+    var Header = Components.Header;
     var ViewManager = (function () {
         function ViewManager() {
             this.NAME = "ViewManager";
@@ -254,6 +299,7 @@ var Core;
             switch (viewname) {
                 case Views.AUTHENTICATION:
                     console.info("Initiating AUTHENTICATION view");
+                    new Header();
                     new Authentication();
                     break;
                 case Views.MY_PLANTS:
@@ -282,7 +328,30 @@ var Core;
 var Observer = Core.Observer;
 var Proxy = Core.Proxy;
 var ViewManager = Core.ViewManager;
-console.info("Initiating plantcare core components");
+console.info("Initiating PlantCare core components");
 var eventDispatcher = new Observer();
 var connection = new Proxy();
 var viewManager = new ViewManager();
+var Components;
+(function (Components) {
+    var Menu = (function () {
+        function Menu() {
+            this.NAME = "Menu";
+            console.info(this.NAME + " has been initiated");
+            this.registerEventInterests();
+            this.container = document.getElementById("container");
+            this.injectHTML();
+            this.registerEventListeners();
+        }
+        Menu.prototype.registerEventInterests = function () {
+        };
+        Menu.prototype.registerEventListeners = function () {
+        };
+        Menu.prototype.injectHTML = function () {
+        };
+        Menu.prototype.eventHandler = function (notification, data) {
+        };
+        return Menu;
+    }());
+    Components.Menu = Menu;
+})(Components || (Components = {}));

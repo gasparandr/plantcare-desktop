@@ -196,7 +196,9 @@ namespace Components {
         }
 
         public eventHandler(notification: string, data: any): void {
+            switch (notification) {
 
+            }
         }
 
 

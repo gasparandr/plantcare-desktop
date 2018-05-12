@@ -12,13 +12,13 @@ namespace Core {
         }
 
         public registerEventInterest(entity: any, notification:string): void {
-
+            console.info( "Registering " + entity.NAME + " for notification " + notification);
             if ( ! this.notificationInterests[ notification ] ) {
                 this.notificationInterests[ notification ] = [];
                 this.notificationInterests[ notification ].push(entity);
             } else {
                 for (let i = 0; i < this.notificationInterests[notification].length; i++) {
-                    if (  this.notificationInterests[notification][i].NAME = entity.NAME ) {
+                    if (  this.notificationInterests[notification][i].NAME == entity.NAME ) {
                         console.warn(entity.NAME + " is already registered to the notification " + notification);
                         return;
                     }

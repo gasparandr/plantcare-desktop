@@ -8,7 +8,7 @@ import Proxy = Core.Proxy;
 import ViewManager = Core.ViewManager;
 
 
-console.info("Initiating plantcare core components");
+console.info("Initiating PlantCare core components");
 
 
 

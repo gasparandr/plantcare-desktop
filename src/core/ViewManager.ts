@@ -2,12 +2,14 @@
 ///<reference path="../constants/Notifications.ts"/>
 ///<reference path="IViewManager.ts"/>
 ///<reference path="../components/Authentication.ts"/>
+///<reference path="../components/Header.ts"/>
 
 
 namespace Core {
     import Views = Constants.Views;
     import Notifications = Constants.Notifications;
     import Authentication = Components.Authentication;
+    import Header = Components.Header;
 
     export class ViewManager implements IViewManager{
         public NAME: string = "ViewManager";
@@ -34,6 +36,7 @@ namespace Core {
             switch (viewname) {
                 case Views.AUTHENTICATION :
                     console.info("Initiating AUTHENTICATION view" );
+                    new Header();
                     new Authentication();
                     break;
 
