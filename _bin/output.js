@@ -240,13 +240,25 @@ var Core;
     var ViewManager = (function () {
         function ViewManager() {
             this.NAME = "ViewManager";
+            this.registerEventInterests();
             console.info(this.NAME + " has been initiated");
+            this.heading = document.getElementById("heading");
+            this.container = document.getElementById("container");
             this.initView(Views.AUTHENTICATION);
         }
+        ViewManager.prototype.registerEventInterests = function () {
+            eventDispatcher.registerEventInterest(this, Notifications.LOGIN_SUCCESS);
+            eventDispatcher.registerEventInterest(this, Notifications.LOGIN_FAILURE);
+        };
         ViewManager.prototype.initView = function (viewname) {
             switch (viewname) {
                 case Views.AUTHENTICATION:
+                    console.info("Initiating AUTHENTICATION view");
                     new Authentication();
+                    break;
+                case Views.MY_PLANTS:
+                    console.info("Initiating MY PLANTS view");
+                    this.container.innerHTML = "";
                     break;
                 default:
                     break;
@@ -255,6 +267,7 @@ var Core;
         ViewManager.prototype.eventHandler = function (notification, data) {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS:
+                    this.initView(Views.MY_PLANTS);
                     break;
                 case Notifications.LOGIN_FAILURE:
                     break;
