@@ -93,6 +93,7 @@ namespace Core {
 
                 console.log(response);
 
+                connection.getPlantGroups();
 
             };
 

@@ -119,6 +119,7 @@ var Core;
             xhr.onload = function () {
                 var response = JSON.parse(this.responseText);
                 console.log(response);
+                connection.getPlantGroups();
             };
             xhr.send(JSON.stringify({ invitationId: invitationId, userId: this.userId }));
         };
@@ -296,6 +297,7 @@ var Components;
             });
         };
         Header.prototype.addInvitation = function (invitation) {
+            var _this = this;
             var inv = document.createElement("li");
             inv.id = invitation._id;
             inv.className = "notification-item grid new";
@@ -308,6 +310,7 @@ var Components;
             acceptBtn.addEventListener("click", function () {
                 responseContainer.setAttribute("style", "display:none");
                 connection.acceptInvitation(invitation._id);
+                _this.notificationDropDown.style.display = "none";
             });
             cancelBtn.addEventListener("click", function () {
                 responseContainer.setAttribute("style", "display:none");

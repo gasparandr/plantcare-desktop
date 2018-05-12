@@ -109,6 +109,7 @@ namespace Components {
             acceptBtn.addEventListener( "click", () => {
                 responseContainer.setAttribute("style", "display:none");
                 connection.acceptInvitation( invitation._id );
+                this.notificationDropDown.style.display = "none";
             });
 
             cancelBtn.addEventListener( "click", () => {
