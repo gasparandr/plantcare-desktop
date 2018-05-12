@@ -1,3 +1,4 @@
+///<reference path="IObserver.ts"/>
 
 
 namespace Core {
