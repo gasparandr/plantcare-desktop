@@ -3,6 +3,7 @@
 ///<reference path="IViewManager.ts"/>
 ///<reference path="../components/Authentication.ts"/>
 ///<reference path="../components/Header.ts"/>
+///<reference path="../components/Menu.ts"/>
 
 
 namespace Core {
@@ -10,6 +11,7 @@ namespace Core {
     import Notifications = Constants.Notifications;
     import Authentication = Components.Authentication;
     import Header = Components.Header;
+    import Menu = Components.Menu;
 
     export class ViewManager implements IViewManager{
         public NAME: string = "ViewManager";
@@ -45,6 +47,8 @@ namespace Core {
                     console.info("Initiating MY PLANTS view" );
                     document.body.classList.remove("landing-page");
                     this.container.innerHTML = "";
+
+                    new Menu();
 
                     break;
 
