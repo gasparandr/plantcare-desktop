@@ -69,9 +69,11 @@
 .notification.active .notifications-icon-bell{
     fill: #34C197;
 }
+.notification .notification-icon{
+    cursor: pointer;
+}
 .notification.notification-alert .notification-icon{
     position: relative;
-    cursor: pointer;
 }
 .notification.notification-alert .notification-icon:before{
     content: "";
