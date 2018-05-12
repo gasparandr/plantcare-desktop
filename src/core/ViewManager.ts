@@ -32,6 +32,11 @@ namespace Core {
         public registerEventInterests(): void {
             eventDispatcher.registerEventInterest(this, Notifications.LOGIN_SUCCESS );
             eventDispatcher.registerEventInterest(this, Notifications.LOGIN_FAILURE );
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_DASHBOARD );
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_MY_PLANTS );
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_CALENDAR );
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_MODERATORS );
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_REPORTS );
         }
 
         public initView(viewname: string): void {
@@ -65,6 +70,22 @@ namespace Core {
                     break;
                 case Notifications.LOGIN_FAILURE :
                     break;
+
+                case Notifications.INIT_DASHBOARD :
+                    break;
+
+                case Notifications.INIT_MY_PLANTS :
+                    break;
+
+                case Notifications.INIT_CALENDAR :
+                    break;
+
+                case Notifications.INIT_MODERATORS :
+                    break;
+
+                case Notifications.INIT_REPORTS :
+                    break;
+
                 default :
                     break;
             }

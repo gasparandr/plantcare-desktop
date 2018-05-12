@@ -1,8 +1,11 @@
 ///<reference path="IComponent.ts"/>
+///<reference path="../constants/Notifications.ts"/>
 
 
 
 namespace Components {
+
+    import Notifications = Constants.Notifications;
 
     export class Menu implements IComponent {
         public NAME: string = "Menu";
@@ -38,29 +41,34 @@ namespace Components {
         public registerEventListeners(): void {
             this.menuItemDashboard.addEventListener( "click", () => {
                 console.info("Dashboard clicked");
+                eventDispatcher.sendNotification( Notifications.INIT_DASHBOARD, null );
                 this.setActiveItem( this.menuItemDashboard );
             });
 
             this.menuItemMyPlants.addEventListener( "click", () => {
                 console.info("My plants clicked");
+                eventDispatcher.sendNotification( Notifications.INIT_MY_PLANTS, null );
                 this.setActiveItem( this.menuItemMyPlants );
 
             });
 
             this.menuItemMyCalendar.addEventListener( "click", () => {
                 console.info("Calendar clicked");
+                eventDispatcher.sendNotification( Notifications.INIT_CALENDAR, null );
                 this.setActiveItem( this.menuItemMyCalendar );
 
             });
 
             this.menuItemModerators.addEventListener( "click", () => {
                 console.info("Moderators clicked");
+                eventDispatcher.sendNotification( Notifications.INIT_MODERATORS, null );
                 this.setActiveItem( this.menuItemModerators );
 
             });
 
             this.menuItemReport.addEventListener( "click", () => {
                 console.info("Reports clicked");
+                eventDispatcher.sendNotification( Notifications.INIT_REPORTS, null );
                 this.setActiveItem( this.menuItemReport );
 
             });

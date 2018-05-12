@@ -50,6 +50,11 @@ var Constants;
         Notifications.PLANT_WATER_SUCCESS = "PLANT_WATER_SUCCESS";
         Notifications.PLANT_GROUP_WATER_SUCCESS = "PLANT_GROUP_WATER_SUCCESS";
         Notifications.PLANTS_ARRIVED = "PLANTS_ARRIVED";
+        Notifications.INIT_DASHBOARD = "INIT_DASHBOARD";
+        Notifications.INIT_MY_PLANTS = "INIT_MY_PLANTS";
+        Notifications.INIT_CALENDAR = "INIT_CALENDAR";
+        Notifications.INIT_MODERATORS = "INIT_MODERATORS";
+        Notifications.INIT_REPORTS = "INIT_REPORTS";
         return Notifications;
     }());
     Constants.Notifications = Notifications;
@@ -328,6 +333,7 @@ var Components;
 })(Components || (Components = {}));
 var Components;
 (function (Components) {
+    var Notifications = Constants.Notifications;
     var Menu = (function () {
         function Menu() {
             this.NAME = "Menu";
@@ -348,22 +354,27 @@ var Components;
             var _this = this;
             this.menuItemDashboard.addEventListener("click", function () {
                 console.info("Dashboard clicked");
+                eventDispatcher.sendNotification(Notifications.INIT_DASHBOARD, null);
                 _this.setActiveItem(_this.menuItemDashboard);
             });
             this.menuItemMyPlants.addEventListener("click", function () {
                 console.info("My plants clicked");
+                eventDispatcher.sendNotification(Notifications.INIT_MY_PLANTS, null);
                 _this.setActiveItem(_this.menuItemMyPlants);
             });
             this.menuItemMyCalendar.addEventListener("click", function () {
                 console.info("Calendar clicked");
+                eventDispatcher.sendNotification(Notifications.INIT_CALENDAR, null);
                 _this.setActiveItem(_this.menuItemMyCalendar);
             });
             this.menuItemModerators.addEventListener("click", function () {
                 console.info("Moderators clicked");
+                eventDispatcher.sendNotification(Notifications.INIT_MODERATORS, null);
                 _this.setActiveItem(_this.menuItemModerators);
             });
             this.menuItemReport.addEventListener("click", function () {
                 console.info("Reports clicked");
+                eventDispatcher.sendNotification(Notifications.INIT_REPORTS, null);
                 _this.setActiveItem(_this.menuItemReport);
             });
         };
@@ -408,6 +419,11 @@ var Core;
         ViewManager.prototype.registerEventInterests = function () {
             eventDispatcher.registerEventInterest(this, Notifications.LOGIN_SUCCESS);
             eventDispatcher.registerEventInterest(this, Notifications.LOGIN_FAILURE);
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_DASHBOARD);
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_MY_PLANTS);
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_CALENDAR);
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_MODERATORS);
+            eventDispatcher.registerEventInterest(this, Notifications.INIT_REPORTS);
         };
         ViewManager.prototype.initView = function (viewname) {
             switch (viewname) {
@@ -433,6 +449,16 @@ var Core;
                     this.initView(Views.MY_PLANTS);
                     break;
                 case Notifications.LOGIN_FAILURE:
+                    break;
+                case Notifications.INIT_DASHBOARD:
+                    break;
+                case Notifications.INIT_MY_PLANTS:
+                    break;
+                case Notifications.INIT_CALENDAR:
+                    break;
+                case Notifications.INIT_MODERATORS:
+                    break;
+                case Notifications.INIT_REPORTS:
                     break;
                 default:
                     break;
