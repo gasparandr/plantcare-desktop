@@ -1,4 +1,5 @@
 ///<reference path="../constants/Notifications.ts"/>
+///<reference path="IProxy.ts"/>
 
 
 namespace Core {

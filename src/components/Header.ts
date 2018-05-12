@@ -1,4 +1,6 @@
 ///<reference path="../constants/Notifications.ts"/>
+///<reference path="IComponent.ts"/>
+///<reference path="../EntryPoint.ts"/>
 
 
 namespace Components {
@@ -40,7 +42,7 @@ namespace Components {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS :
 
-                    console.info( "Header received login success" );
+                    console.info( "Header received login success." );
                     this.switchHeaderContent();
                     connection.pingForInvites();
                     break;

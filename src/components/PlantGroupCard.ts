@@ -3,7 +3,7 @@
 
 namespace Components {
     export class PlantGroupCard implements IComponent {
-        public NAME: string;
+        public NAME: string = "PlantGroupCard";
         private container: HTMLElement;
 
         constructor() {
@@ -29,6 +29,9 @@ namespace Components {
         }
 
         public eventHandler(notification: string, data: any): void {
+            switch (notification) {
+
+            }
         }
 
 

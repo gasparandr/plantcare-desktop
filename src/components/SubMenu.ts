@@ -5,7 +5,7 @@ namespace Components {
 
 
     export class SubMenu implements IComponent {
-        public NAME: string = "Submenu";
+        public NAME: string = "SubMenu";
         private container: HTMLElement;
 
 
@@ -37,7 +37,7 @@ namespace Components {
 
         public eventHandler(notification: string, data: any): void {
             switch (notification) {
-                
+
             }
         }
 

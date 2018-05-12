@@ -1,4 +1,5 @@
 ///<reference path="IComponent.ts"/>
+///<reference path="../EntryPoint.ts"/>
 
 
 namespace Components {
@@ -109,10 +110,10 @@ namespace Components {
                                     <p class="f-9-13 f-777B79 desc">Arcu aptent placerat blandit quis, lectus sit orci nec ut. Eleifend ut mauris</p>
                                     <div class="form">
                                         <div class="row">
-                                            <input id="authentification-log-in-email" class="authentification-log-in-email g-100 rad-4-5 f-12-15 input-icon email" type="text" placeholder="email" required>
+                                            <input id="authentification-log-in-email" class="authentification-log-in-email g-100 rad-4-5 f-12-15 input-icon email" type="text" placeholder="email" required value="desktop@plantcare.com">
                                         </div>
                                         <div class="row">
-                                            <input id="authentification-log-in-password" class="authentification-log-in-password g-100 rad-4-5 f-12-15 input-icon password" type="password" placeholder="password" required>
+                                            <input id="authentification-log-in-password" class="authentification-log-in-password g-100 rad-4-5 f-12-15 input-icon password" type="password" placeholder="password" required value="asd123">
                                         </div>
                                         <div class="row">
                                             <div class="grid poz-center">
