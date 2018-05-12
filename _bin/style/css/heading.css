@@ -71,6 +71,7 @@
 }
 .notification.notification-alert .notification-icon{
     position: relative;
+    cursor: pointer;
 }
 .notification.notification-alert .notification-icon:before{
     content: "";
@@ -130,6 +131,11 @@
 
 .notification-item{
     padding: 7px 0;
+}
+.notification-item.grid{
+    -webkit-flex-flow: nowrap;
+    -ms-flex-flow: nowrap;
+    flex-flow: nowrap;
 }
 .notification-item:first-child{
     padding-top: 15px;
