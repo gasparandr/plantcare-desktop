@@ -108,7 +108,7 @@ var Core;
             xhr.onload = function () {
                 var response = JSON.parse(this.responseText);
                 console.log(response);
-                eventDispatcher.sendNotification(Notifications.PLANT_GROUPS, response);
+                eventDispatcher.sendNotification(Notifications.INIT_MY_PLANTS, response);
             };
             xhr.send();
         };
@@ -368,7 +368,7 @@ var Components;
             });
             this.menuItemMyPlants.addEventListener("click", function () {
                 console.info("My plants clicked");
-                eventDispatcher.sendNotification(Notifications.INIT_MY_PLANTS, null);
+                connection.getPlantGroups();
                 _this.setActiveItem(_this.menuItemMyPlants);
             });
             this.menuItemMyCalendar.addEventListener("click", function () {
@@ -534,8 +534,8 @@ var Core;
                     plantGroupsWrapper.id = "plant-groups-wrapper";
                     plantGroupsWrapper.className = "grid";
                     document.body.appendChild(plantGroupsWrapper);
-                    for (var i = 0; i < data.plantGroups.length; i++) {
-                        new PlantGroupCard(data.plantGroups[i]);
+                    for (var i = 0; i < data.length; i++) {
+                        new PlantGroupCard(data[i]);
                     }
                     break;
                 default:
@@ -545,13 +545,14 @@ var Core;
         ViewManager.prototype.eventHandler = function (notification, data) {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS:
-                    this.initView(Views.MY_PLANTS, data);
+                    this.initView(Views.MY_PLANTS, data.plantGroups);
                     break;
                 case Notifications.LOGIN_FAILURE:
                     break;
                 case Notifications.INIT_DASHBOARD:
                     break;
                 case Notifications.INIT_MY_PLANTS:
+                    this.initView(Views.MY_PLANTS, data);
                     break;
                 case Notifications.INIT_CALENDAR:
                     break;

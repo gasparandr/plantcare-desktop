@@ -47,7 +47,7 @@ namespace Components {
 
             this.menuItemMyPlants.addEventListener( "click", () => {
                 console.info("My plants clicked");
-                eventDispatcher.sendNotification( Notifications.INIT_MY_PLANTS, null );
+                connection.getPlantGroups();
                 this.setActiveItem( this.menuItemMyPlants );
 
             });

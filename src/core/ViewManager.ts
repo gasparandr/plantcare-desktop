@@ -65,8 +65,8 @@ namespace Core {
                     document.body.appendChild( plantGroupsWrapper );
 
 
-                    for (let i = 0; i < data.plantGroups.length; i++) {
-                        new PlantGroupCard(data.plantGroups[i]);
+                    for (let i = 0; i < data.length; i++) {
+                        new PlantGroupCard(data[i]);
                     }
 
                     break;
@@ -80,7 +80,7 @@ namespace Core {
         public eventHandler(notification: string, data: any): void {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS :
-                    this.initView( Views.MY_PLANTS, data );
+                    this.initView( Views.MY_PLANTS, data.plantGroups );
                     break;
                 case Notifications.LOGIN_FAILURE :
                     break;
@@ -89,6 +89,7 @@ namespace Core {
                     break;
 
                 case Notifications.INIT_MY_PLANTS :
+                    this.initView( Views.MY_PLANTS, data );
                     break;
 
                 case Notifications.INIT_CALENDAR :

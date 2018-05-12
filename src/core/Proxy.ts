@@ -76,7 +76,7 @@ namespace Core {
 
                 console.log(response);
 
-                eventDispatcher.sendNotification( Notifications.PLANT_GROUPS, response )
+                eventDispatcher.sendNotification( Notifications.INIT_MY_PLANTS, response )
             };
 
             xhr.send();
