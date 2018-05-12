@@ -1,0 +1,354 @@
+.plant-group-card-item{
+    padding: 20px;
+}
+.plant-group-card {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(52, 193, 151, 0.28);
+}
+
+/* Plant group card container */
+.plant-group-card-container {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+/* More option */
+.plant-group-card-container .more-option-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 4px;
+    height: 15px;
+}
+
+/* More option */
+
+/* Card info */
+.plant-group-card-info {
+    position: relative;
+    top: -3px;
+    left: 0;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* END Card info */
+
+/* Members */
+.plant-group-card .members {
+    margin: 10px 0 24px 0;
+}
+
+.plant-group-card .profile-monogram {
+    margin-left: 4px;
+}
+
+/* Members */
+
+.plant-group-card-last-watering span {
+    position: relative;
+    top: 2px;
+    left: 5px;
+}
+
+.plant-group-card-summary {
+    padding-right: 50px;
+}
+
+.plant-group-card-next-watering {
+    margin-left: 3px;
+}
+
+.plant-group-card-next-watering-block {
+    padding: 5px 0 10px 0;
+}
+
+/* Progress bar / Status bar */
+.progress-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-bg {
+    height: 10px;
+    background-color: rgba(204, 210, 207, 0.3);
+}
+
+.progress-bar .progress-bar-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.progress-bar .progress-bar-status.red {
+    background: linear-gradient(90deg, #f55045 0%, #fd8253 100%);
+}
+
+.progress-bar .progress-bar-status.orange {
+    background: linear-gradient(270deg, #ffd36e 0%, #ffae49 100%);
+}
+
+.progress-bar .progress-bar-status.green {
+    background: linear-gradient(90deg, #2bdb3d 0%, #6fee3b 100%);
+}
+
+/* Progress bar / Status bar */
+
+/* Watering btn */
+.plant-group-watering-btn {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    bottom: -7%;
+    right: -3%;
+    cursor: pointer;
+    margin-top: -1px;
+    margin-left: -1px;
+    z-index: 1;
+}
+
+.plant-group-watering-btn svg {
+    position: absolute;
+    top: 45%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    height: 15px;
+}
+
+/* Watering btn */
+/* END Plant group card container */
+
+/* Card confirmation */
+.plant-group-card-confirmation-bg {
+    position: absolute;
+    width: 61px;
+    height: 61px;
+    bottom: -7%;
+    right: -3%;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: -1;
+
+}
+
+.plant-group-card-confirmation.active .plant-group-card-confirmation-bg {
+    -webkit-animation: animationCardBg 2s linear;
+    -moz-animation: animationCardBg 2s linear;
+    -o-animation: animationCardBg 2s linear;
+    animation: animationCardBg 2s linear;
+    width: calc(61px * 50);
+    height: calc(61px * 50);
+    border-radius: 0;
+    bottom: -200%;
+    right: -100%;
+    cursor: default;
+    z-index: 2;
+
+}
+
+/* Keyframe  */
+@-webkit-keyframes animationCardBg {
+    0% {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        bottom: -7%;
+        right: -3%;
+    }
+    85% {
+        border-radius: 0;
+    }
+    99%{
+        z-index: 2;
+    }
+    100% {
+        width: calc(61px * 50);
+        height: calc(61px * 50);
+        bottom: -200%;
+        right: -100%;
+    }
+}
+
+@-o-keyframes animationCardBg {
+    0% {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        bottom: -7%;
+        right: -3%;
+    }
+    85% {
+        border-radius: 0;
+    }
+    99%{
+        z-index: 2;
+    }
+    100% {
+        width: calc(61px * 50);
+        height: calc(61px * 50);
+        bottom: -200%;
+        right: -100%;
+    }
+}
+
+@-moz-keyframes animationCardBg {
+    0% {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        bottom: -7%;
+        right: -3%;
+    }
+    85% {
+        border-radius: 0;
+    }
+    99%{
+        z-index: 2;
+    }
+    100% {
+        width: calc(61px * 50);
+        height: calc(61px * 50);
+        bottom: -200%;
+        right: -100%;
+
+    }
+}
+
+@keyframes animationCardBg {
+    0% {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        bottom: -7%;
+        right: -3%;
+    }
+    85% {
+        border-radius: 0;
+    }
+    99%{
+        z-index: 2;
+    }
+    100% {
+        width: calc(61px * 50);
+        height: calc(61px * 50);
+        bottom: -200%;
+        right: -100%;
+    }
+}
+
+.plant-group-card-confirmation-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;
+    z-index: -1;
+}
+
+.plant-group-card-confirmation.active .plant-group-card-confirmation-content {
+    -webkit-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    -o-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation: showContainer 500ms linear;
+    -moz-animation: showContainer 500ms linear;
+    -o-animation: showContainer 500ms linear;
+    animation: showContainer 500ms linear;
+    opacity: 1;
+    z-index: 110;
+
+}
+
+.plant-group-card-confirmation-question {
+    width: 100%;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+.plant-group-card-confirmation .confirmation-btn {
+    border: 1px solid #fff;
+    padding: 6px 25px;
+    margin: 25px 10px;
+}
+
+.plant-group-card-confirmation .confirmation-btn-no:hover{
+    background-color: rgba(255,255,255, 0.05);
+}
+.plant-group-card-confirmation .confirmation-btn-yes:hover{
+    background-color: rgba(255,255,255, 0.95);
+}
+
+.confirmation-review-plants {
+    opacity: 0.5;
+}
+
+/* Keyframe  */
+@-webkit-keyframes showContainer {
+    0% {
+        opacity: 0;
+        z-index: -1;
+
+    }
+    99% {
+        z-index: 110;
+    }
+    100% {
+        z-index: 110;
+        opacity: 1;
+    }
+}
+
+@-o-keyframes showContainer {
+    0% {
+        opacity: 0;
+        z-index: -1;
+
+    }
+    99% {
+        z-index: 110;
+    }
+    100% {
+        z-index: 110;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes showContainer {
+    0% {
+        opacity: 0;
+        z-index: -1;
+
+    }
+    99% {
+        z-index: 110;
+    }
+    100% {
+        z-index: 110;
+        opacity: 1;
+    }
+}
+
+@keyframes showContainer {
+    0% {
+        opacity: 0;
+        z-index: -1;
+
+    }
+    99% {
+        z-index: 110;
+    }
+    100% {
+        z-index: 110;
+        opacity: 1;
+    }
+}
+
+/* END Keyframe  */
+
+/* END Keyframe  */
+/* END Card confirmation */

@@ -26,10 +26,21 @@
     line-height: 13px;
 }
 
+/*11px - 14px*/
+.f-11-14{
+    font-size: 11px;
+    line-height: 14px;
+}
+
 /*12px - 15px*/
 .f-12-15{
     font-size: 12px;
     line-height: 15px;
 }
 
+/* 17px - 20px*/
+.f-17-20{
+    font-size: 17px;
+    line-height: 20px;
+}
 /* END Font size */

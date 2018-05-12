@@ -106,6 +106,7 @@
     box-shadow: 0 1px 11px 0 rgba(0,0,0,0.15);
     transform: translateY(10px);
     transition: transform 300ms ease-in;
+    z-index: 8888;
 }
 .notification.active .notification-pop-up{
     transform: translateY(0);
