@@ -76,7 +76,7 @@
     right: 1px;
     z-index: 2;
 }
-.notification-icon.active:after{
+.notification.notification-alert .notification-icon:after{
     content: "";
     position: absolute;
     height: 7px;
