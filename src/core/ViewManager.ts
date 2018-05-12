@@ -4,6 +4,7 @@
 ///<reference path="../components/Authentication.ts"/>
 ///<reference path="../components/Header.ts"/>
 ///<reference path="../components/Menu.ts"/>
+///<reference path="../components/PlantGroupCard.ts"/>
 
 
 namespace Core {
@@ -12,6 +13,7 @@ namespace Core {
     import Authentication = Components.Authentication;
     import Header = Components.Header;
     import Menu = Components.Menu;
+    import PlantGroupCard = Components.PlantGroupCard;
 
     export class ViewManager implements IViewManager{
         public NAME: string = "ViewManager";
@@ -25,7 +27,7 @@ namespace Core {
             this.heading = document.getElementById( "heading" );
             this.container = document.getElementById( "container" );
 
-            this.initView( Views.AUTHENTICATION );
+            this.initView( Views.AUTHENTICATION, null );
 
         }
 
@@ -39,7 +41,7 @@ namespace Core {
             eventDispatcher.registerEventInterest(this, Notifications.INIT_REPORTS );
         }
 
-        public initView(viewname: string): void {
+        public initView(viewname: string, data: any): void {
             switch (viewname) {
                 case Views.AUTHENTICATION :
                     console.info("Initiating AUTHENTICATION view" );
@@ -53,7 +55,19 @@ namespace Core {
                     document.body.classList.remove("landing-page");
                     this.container.innerHTML = "";
 
+
                     new Menu();
+
+                    let plantGroupsWrapper: HTMLElement = document.createElement("div");
+                    plantGroupsWrapper.id = "plant-groups-wrapper";
+                    plantGroupsWrapper.className = "grid";
+
+                    document.body.appendChild( plantGroupsWrapper );
+
+
+                    for (let i = 0; i < data.plantGroups.length; i++) {
+                        new PlantGroupCard(data.plantGroups[i]);
+                    }
 
                     break;
 
@@ -66,7 +80,7 @@ namespace Core {
         public eventHandler(notification: string, data: any): void {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS :
-                    this.initView( Views.MY_PLANTS );
+                    this.initView( Views.MY_PLANTS, data );
                     break;
                 case Notifications.LOGIN_FAILURE :
                     break;

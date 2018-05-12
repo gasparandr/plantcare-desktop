@@ -112,7 +112,15 @@ var Core;
             };
             xhr.send();
         };
-        Proxy.prototype.invite = function (plantGroupId) {
+        Proxy.prototype.acceptInvitation = function (invitationId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.address + "/accept/invitation", true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
+                var response = JSON.parse(this.responseText);
+                console.log(response);
+            };
+            xhr.send(JSON.stringify({ invitationId: invitationId, userId: this.userId }));
         };
         Proxy.prototype.getInvitations = function () {
             var self = this;
@@ -299,6 +307,7 @@ var Components;
             var cancelBtn = document.getElementById("notification-item-decline-" + invitation._id);
             acceptBtn.addEventListener("click", function () {
                 responseContainer.setAttribute("style", "display:none");
+                connection.acceptInvitation(invitation._id);
             });
             cancelBtn.addEventListener("click", function () {
                 responseContainer.setAttribute("style", "display:none");
@@ -400,6 +409,88 @@ var Components;
     }());
     Components.Menu = Menu;
 })(Components || (Components = {}));
+var Components;
+(function (Components) {
+    var PlantGroupCard = (function () {
+        function PlantGroupCard(config) {
+            this.NAME = "PlantGroupCard";
+            console.info(this.NAME + " has been initiated");
+            this.registerEventInterests();
+            this.name = config.name;
+            this.id = config._id;
+            this.description = config.description;
+            this.generateMockData();
+            this.container = document.getElementById("plant-groups-wrapper");
+            this.injectHTML();
+            this.plantGroupWateringBtn = document.getElementById("plant-group-watering-btn-" + this.id);
+            this.confirmation = document.getElementById("plant-group-card-confirmation-" + this.id);
+            this.confirmBtnYes = document.getElementById("confirmation-btn-yes-" + this.id);
+            this.confirmBtnNo = document.getElementById("confirmation-btn-no-" + this.id);
+            this.plantGroupCardLastWateringDate = document.getElementById("plant-group-card-last-watering-date-" + this.id);
+            this.plantGroupCardNextWateringDate = document.getElementById("plant-group-card-next-watering-" + this.id);
+            this.plantGroupCardStatus = document.getElementById("plant-group-card-status-" + this.id);
+            this.plantGroupCardProgressStatus = document.getElementById("plant-group-card-progress-status-" + this.id);
+            this.registerEventListeners();
+        }
+        PlantGroupCard.prototype.registerEventInterests = function () {
+        };
+        PlantGroupCard.prototype.registerEventListeners = function () {
+            var _this = this;
+            this.plantGroupWateringBtn.addEventListener("click", function () {
+                _this.plantGroupWateringBtn.style.display = "none";
+                _this.confirmation.classList.add("active");
+            });
+            this.confirmBtnNo.addEventListener("click", function () {
+                _this.confirmation.classList.remove("active");
+                _this.plantGroupWateringBtn.style.display = "block";
+            });
+            this.confirmBtnYes.addEventListener("click", function () {
+                _this.confirmation.classList.remove("active");
+                _this.plantGroupWateringBtn.style.display = "block";
+                connection.waterPlantGroup(_this.id);
+                _this.updateLastWatering();
+            });
+        };
+        PlantGroupCard.prototype.injectHTML = function () {
+            var plantGroupContainer = document.createElement("div");
+            plantGroupContainer.id = "plant-group-card-item-" + this.id;
+            plantGroupContainer.className = "plant-group-card-item g-33";
+            plantGroupContainer.innerHTML = "<!-- Plan group card -->\n                    <div id=\"plant-group-card-" + this.id + "\" class=\"plant-group-card\">\n        \n                        <!-- Default card content -->\n                        <div class=\"plant-group-card-container bg-ffffff\">\n                            <!-- More option btn -->\n                            <div id=\"more-option-" + this.id + "\" class=\"more-option\">\n                                <a id=\"more-option-btn-" + this.id + "\" class=\"more-option-btn\">\n                                    <svg width=\"4px\" height=\"15px\" viewBox=\"0 0 4 15\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                                        <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                                            <g transform=\"translate(-793.000000, -179.000000)\" fill=\"#233B30\" fill-rule=\"nonzero\">\n                                                <g transform=\"translate(510.000000, 159.000000)\">\n                                                    <g transform=\"translate(19.000000, 20.000000)\">\n                                                        <path d=\"M265.675532,3.35106383 C264.750161,3.35106383 264,2.60090264 264,1.67553191 C264,0.75016119 264.750161,0 265.675532,0 C266.600903,0 267.351064,0.75016119 267.351064,1.67553191 C267.351064,2.60090264 266.600903,3.35106383 265.675532,3.35106383 Z M265.675532,9.25531915 C264.750161,9.25531915 264,8.50515796 264,7.57978723 C264,6.65441651 264.750161,5.90425532 265.675532,5.90425532 C266.600903,5.90425532 267.351064,6.65441651 267.351064,7.57978723 C267.351064,8.50515796 266.600903,9.25531915 265.675532,9.25531915 Z M265.675532,15 C264.750161,15 264,14.2498388 264,13.3244681 C264,12.3990974 264.750161,11.6489362 265.675532,11.6489362 C266.600903,11.6489362 267.351064,12.3990974 267.351064,13.3244681 C267.351064,14.2498388 266.600903,15 265.675532,15 Z\" id=\"more-icon\"></path>\n                                                    </g>\n                                                </g>\n                                            </g>\n                                        </g>\n                                    </svg>\n                                </a>\n                            </div>\n                            <!-- END More option btn -->\n        \n                            <span id=\"plant-group-card-info-" + this.id + "\" class=\"plant-group-card-info f-10-13\">" + this.speciesCount + " species | " + this.plantCount + " plants</span>\n        \n                            <h4 id=\"plant-group-card-title-" + this.id + "\" class=\"plant-group-card-title f-17-20\">" + this.name + "</h4>\n        \n                            <!-- Members-->\n                            <div id=\"plant-group-card-members-" + this.id + "\" class=\"members\">\n                                <div class=\"profile-monogram inline\">\n                                    <ul id=\"profile-monogram-list-" + this.id + "\" class=\"profile-monogram-list list-clear\">\n                                        <li id=\"profile-monogram-list-item-" + this.id + "\" class=\"profile-monogram-list-item profile-item inline bg-FFE4E4\">\n                                            <span class=\"upper f-FB5858 semi-bold f-11-14\">JM</span>\n                                        </li>\n                                        <li id=\"profile-monogram-list-item-XXX\" class=\"profile-monogram-list-item profile-item inline bg-F1E5FF\">\n                                            <span class=\"upper f-A458FB semi-bold f-11-14\">JM</span>\n                                        </li>\n                                    </ul>\n                                </div>\n                            </div>\n                            <!-- END Members-->\n        \n                            <div id=\"plant-group-card-summary-" + this.id + "\" class=\"plant-group-card-summary\">\n                                <!-- Last watering time-->\n                                <div id=\"plant-group-card-last-watering-" + this.id + "\" class=\"plant-group-card-last-watering grid poz-center\">\n                                    <svg width=\"9px\" height=\"12px\" viewBox=\"0 0 9 12\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                                        <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                                            <g transform=\"translate(-882.000000, -287.000000)\" fill=\"#1997F0\" fill-rule=\"nonzero\">\n                                                <g transform=\"translate(860.000000, 159.000000)\">\n                                                    <g transform=\"translate(19.000000, 20.000000)\">\n                                                        <g transform=\"translate(3.000000, 107.000000)\">\n                                                            <path class=\"icon\" d=\"M3.83415156,1.14235432 L0.539492807,6.88823069 C-0.152845778,8.10298476 -0.206319371,9.64758706 0.539492807,10.9482727 C1.66063976,12.9035426 4.15458244,13.5797513 6.10986646,12.4585902 C8.06515049,11.3374432 8.7413592,8.84351472 7.62019808,6.88821653 L4.32553933,1.14235432 C4.21670867,0.952548559 3.94296806,0.952548559 3.83415156,1.14235432 Z\" id=\"water-drop-blue\"></path>\n                                                        </g>\n                                                    </g>\n                                                </g>\n                                            </g>\n                                        </g>\n                                    </svg>\n                                    <span id=\"plant-group-card-last-watering-date-" + this.id + "\" class=\"plant-group-card-last-watering-date f-10-13 semi-bold\">" + this.lastWateredDate + "</span>\n                                </div>\n                                <!-- END Last watering time-->\n        \n                                <div class=\"plant-group-card-next-watering-block grid\">\n                                    <!-- Next watering time -->\n                                    <div class=\"g-60\">\n                                        <span class=\"f-10-13 semi-bold\">Next watering: </span>\n                                        <span id=\"plant-group-card-next-watering-" + this.id + "\" class=\"plant-group-card-next-watering f-10-13 semi-bold\">" + this.nextWateringDate + "</span>\n                                    </div>\n                                    <!-- END Next watering time -->\n        \n                                    <!-- Watering status value -->\n                                    <div class=\"g-40 right\">\n                                        <span id=\"plant-group-card-status-" + this.id + "\" class=\"plant-group-card-status f-10-13 semi-bold\">" + this.percent + "%</span>\n                                    </div>\n                                    <!-- Watering status value -->\n                                </div>\n        \n                                <!-- Progress bar -->\n                                <div class=\"progress-bar rad-6\">\n                                    <div class=\"progress-bar-bg\"></div>\n                                    <div id=\"plant-group-card-progress-status-" + this.id + "\" class=\"plant-group-card-progress-status progress-bar-status rad-6 " + this.statusClassName + "\" style=\"width: " + this.percent + "%\"></div>\n                                </div>\n                                <!-- END Progress bar -->\n        \n                            </div>\n        \n                            <!-- Watering button -->\n                            <div id=\"plant-group-watering-btn-" + this.id + "\" class=\"plant-group-watering-btn bg-1997F0 rad-50\">\n                                <svg width=\"9px\" height=\"12px\" viewBox=\"0 0 9 12\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                                    <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                                        <g transform=\"translate(-882.000000, -287.000000)\" fill=\"#ffffff\" fill-rule=\"nonzero\">\n                                            <g transform=\"translate(860.000000, 159.000000)\">\n                                                <g transform=\"translate(19.000000, 20.000000)\">\n                                                    <g transform=\"translate(3.000000, 107.000000)\">\n                                                        <path class=\"icon\" d=\"M3.83415156,1.14235432 L0.539492807,6.88823069 C-0.152845778,8.10298476 -0.206319371,9.64758706 0.539492807,10.9482727 C1.66063976,12.9035426 4.15458244,13.5797513 6.10986646,12.4585902 C8.06515049,11.3374432 8.7413592,8.84351472 7.62019808,6.88821653 L4.32553933,1.14235432 C4.21670867,0.952548559 3.94296806,0.952548559 3.83415156,1.14235432 Z\" id=\"water-drop-blue\"></path>\n                                                    </g>\n                                                </g>\n                                            </g>\n                                        </g>\n                                    </g>\n                                </svg>\n                            </div>\n                            <!-- END Watering button -->\n                        </div>\n                        <!-- END Default card content -->\n        \n                        <!-- Confirmation watering-->\n                        <div  id=\"plant-group-card-confirmation-" + this.id + "\" class=\"plant-group-card-confirmation\">\n                            <div class=\"plant-group-card-confirmation-bg bg-1997F0\"></div>\n                            <div class=\"plant-group-card-confirmation-content f-ffffff center\">\n                                <div class=\"plant-group-card-confirmation-question\">\n                                    <span class=\"inline f-12-15\">Are you sure you want to water all plants within MY</span>\n                                    <span class=\"inline f-12-15 semi-bold\">" + this.name + "</span>\n                                    <span class=\"inline f-12-15\">?</span>\n                                </div>\n                                <!-- Confirmation watering-->\n                                <div class=\"confirmation-btns\">\n                                    <a id=\"confirmation-btn-no-" + this.id + "\" class=\"confirmation-btn confirmation-btn-no f-12-15 capit rad-4\">no</a>\n                                    <a id=\"confirmation-btn-yes-" + this.id + "\" class=\"confirmation-btn confirmation-btn-yes f-12-15 capit rad-4 bg-ffffff f-1997F0\">yes</a>\n                                </div>\n                                <!-- END Confirmation watering-->\n                                <a class=\"confirmation-review-plants capit semi-bold\">Review Plants</a>\n                            </div>\n                        </div>\n                        <!-- END Confirmation watering-->\n        \n                    </div>\n                <!-- END Plan group card -->";
+            this.container.appendChild(plantGroupContainer);
+        };
+        PlantGroupCard.prototype.generateMockData = function () {
+            this.speciesCount = Math.floor(Math.random() * 9) + 4;
+            this.plantCount = Math.floor(Math.random() * 22) + 6;
+            var lastWateredDay = Math.floor(Math.random() * 18) + 1;
+            this.lastWateredDate = lastWateredDay + " May 2018";
+            var randomFreq = Math.floor(Math.random() * 12) + 1;
+            this.nextWateringDate = (randomFreq + lastWateredDay) + " May 2018";
+            this.percent = Math.floor(Math.random() * 100) + 1;
+            if (this.percent <= 33) {
+                this.statusClassName = "red";
+            }
+            else if (this.percent <= 66) {
+                this.statusClassName = "orange";
+            }
+            else {
+                this.statusClassName = "green";
+            }
+        };
+        PlantGroupCard.prototype.updateLastWatering = function () {
+            this.plantGroupCardLastWateringDate.innerHTML = "TODAY";
+            this.plantGroupCardNextWateringDate.innerHTML = "00 May 2019";
+            this.plantGroupCardStatus.innerText = "100%";
+            this.plantGroupCardProgressStatus.setAttribute("style", "width: 100%");
+            this.plantGroupCardProgressStatus.classList.add("green");
+        };
+        PlantGroupCard.prototype.eventHandler = function (notification, data) {
+            switch (notification) {
+            }
+        };
+        return PlantGroupCard;
+    }());
+    Components.PlantGroupCard = PlantGroupCard;
+})(Components || (Components = {}));
 var Core;
 (function (Core) {
     var Views = Constants.Views;
@@ -407,6 +498,7 @@ var Core;
     var Authentication = Components.Authentication;
     var Header = Components.Header;
     var Menu = Components.Menu;
+    var PlantGroupCard = Components.PlantGroupCard;
     var ViewManager = (function () {
         function ViewManager() {
             this.NAME = "ViewManager";
@@ -414,7 +506,7 @@ var Core;
             console.info(this.NAME + " has been initiated");
             this.heading = document.getElementById("heading");
             this.container = document.getElementById("container");
-            this.initView(Views.AUTHENTICATION);
+            this.initView(Views.AUTHENTICATION, null);
         }
         ViewManager.prototype.registerEventInterests = function () {
             eventDispatcher.registerEventInterest(this, Notifications.LOGIN_SUCCESS);
@@ -425,7 +517,7 @@ var Core;
             eventDispatcher.registerEventInterest(this, Notifications.INIT_MODERATORS);
             eventDispatcher.registerEventInterest(this, Notifications.INIT_REPORTS);
         };
-        ViewManager.prototype.initView = function (viewname) {
+        ViewManager.prototype.initView = function (viewname, data) {
             switch (viewname) {
                 case Views.AUTHENTICATION:
                     console.info("Initiating AUTHENTICATION view");
@@ -438,6 +530,13 @@ var Core;
                     document.body.classList.remove("landing-page");
                     this.container.innerHTML = "";
                     new Menu();
+                    var plantGroupsWrapper = document.createElement("div");
+                    plantGroupsWrapper.id = "plant-groups-wrapper";
+                    plantGroupsWrapper.className = "grid";
+                    document.body.appendChild(plantGroupsWrapper);
+                    for (var i = 0; i < data.plantGroups.length; i++) {
+                        new PlantGroupCard(data.plantGroups[i]);
+                    }
                     break;
                 default:
                     break;
@@ -446,7 +545,7 @@ var Core;
         ViewManager.prototype.eventHandler = function (notification, data) {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS:
-                    this.initView(Views.MY_PLANTS);
+                    this.initView(Views.MY_PLANTS, data);
                     break;
                 case Notifications.LOGIN_FAILURE:
                     break;
@@ -475,49 +574,6 @@ console.info("Initiating PlantCare core components");
 var eventDispatcher = new Observer();
 var connection = new Proxy();
 var viewManager = new ViewManager();
-var Components;
-(function (Components) {
-    var PlantGroupCard = (function () {
-        function PlantGroupCard(config) {
-            this.NAME = "PlantGroupCard";
-            console.info(this.NAME + " has been initiated");
-            this.registerEventInterests();
-            this.generateMockData();
-            this.container = document.getElementById("container");
-            this.registerEventListeners();
-        }
-        PlantGroupCard.prototype.registerEventInterests = function () {
-        };
-        PlantGroupCard.prototype.registerEventListeners = function () {
-        };
-        PlantGroupCard.prototype.injectHTML = function () {
-        };
-        PlantGroupCard.prototype.generateMockData = function () {
-            this.speciesCount = Math.floor(Math.random() * 9) + 4;
-            this.plantCount = Math.floor(Math.random() * 22) + 6;
-            var lastWateredDay = Math.floor(Math.random() * 18) + 1;
-            this.lastWateredDate = lastWateredDay + " May 2018";
-            var randomFreq = Math.floor(Math.random() * 12) + 1;
-            this.nextWateringDate = (randomFreq + lastWateredDay) + " May 2018";
-            this.percent = Math.floor(Math.random() * 100) + 1;
-            if (this.percent <= 33) {
-                this.statusClassName = "";
-            }
-            else if (this.percent <= 66) {
-                this.statusClassName = "";
-            }
-            else {
-                this.statusClassName = "";
-            }
-        };
-        PlantGroupCard.prototype.eventHandler = function (notification, data) {
-            switch (notification) {
-            }
-        };
-        return PlantGroupCard;
-    }());
-    Components.PlantGroupCard = PlantGroupCard;
-})(Components || (Components = {}));
 var Components;
 (function (Components) {
     var SubMenu = (function () {

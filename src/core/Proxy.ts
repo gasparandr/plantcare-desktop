@@ -82,8 +82,21 @@ namespace Core {
             xhr.send();
         }
 
-        public invite(plantGroupId: string): void {
+        public acceptInvitation(invitationId: string): void {
 
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', this.address + "/accept/invitation", true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
+
+                let response = JSON.parse( this.responseText );
+
+                console.log(response);
+
+
+            };
+
+            xhr.send(JSON.stringify({ invitationId: invitationId, userId: this.userId }));
         }
 
         public getInvitations(): void {
