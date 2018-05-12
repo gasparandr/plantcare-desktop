@@ -27,7 +27,81 @@ a{
 
 button{
     border: none;
+    cursor: pointer;
 }
+
+/* Input */
+input{
+    padding: 10px 0 10px 35px;
+    border: none;
+    background-color: transparent;
+    font-family: 'montserratregular';
+}
+input:focus{
+    outline: none;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgba(35, 59, 48, 0.5);
+    font-family: 'montserratregular';
+}
+input::-moz-placeholder { /* Firefox 19+ */
+    color: rgba(35, 59, 48, 0.5);
+    font-family: 'montserratregular';
+}
+input:-ms-input-placeholder { /* IE 10+ */
+    color: rgba(35, 59, 48, 0.5);
+    font-family: 'montserratregular';
+}
+input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(35, 59, 48, 0.5);
+    font-family: 'montserratregular';
+}
+
+/* Input - Checkbox */
+.checkbox {
+    position: relative;
+}
+.checkbox .checkbox-mark {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #CCD2CF;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    left: 0;
+    top: -1px;
+}
+.checkbox .checkbox-mark:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 3px;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 7px;
+}
+.checkbox input[type="checkbox"] {
+    visibility: hidden;
+    padding: 0px;
+}
+.checkbox input[type="checkbox"]:checked + label {
+    background-color: #CCD2CF;
+    border-color: #CCD2CF;
+}
+.checkbox input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+.checkbox .label-desc{
+    padding-left: 11px;
+}
+/* Input - Checkbox */
+/* END Input*/
+
 
 .inline{
     display: inline-block;
@@ -78,6 +152,21 @@ button{
 .f-FA3C65{
     color: #FA3C65;
 }
+.f-777B79{
+    color: #777B79;
+}
+.f-34C197{
+    color: #34C197
+}
+.f-4468B0{
+    color: #4468B0;
+}
+.f-2AA3EF{
+    color: #2AA3EF;
+}
+.f-D54B3D{
+    color: #D54B3D;
+}
 /* END Font color */
 
 /* Background color */
@@ -90,12 +179,39 @@ button{
 .bg-FA3C65{
     background-color: #FA3C65;
 }
+.bg-777B79{
+    background-color: #777B79;
+}
+.bg-67E6CF-2D9DA1{
+    background: linear-gradient(90deg, #67E6CF 0%, #2D9DA1 100%);
+}
+.bg-34C197{
+    color: #34C197
+}
+.bg-4468B0{
+    background-color: #4468B0;
+}
+.bg-2AA3EF{
+    background-color: #2AA3EF;
+}
+.bg-D54B3D{
+    background-color: #D54B3D;
+}
 /* END Background color */
 
 
 /* Border radius */
+.rad-4-5{
+    border-radius: 4.5px;
+}
 .rad-13-5{
     border-radius: 13.5px;
+}
+.rad-15{
+    border-radius: 15px;
+}
+.rad-18{
+    border-radius: 18px;
 }
 /* Border radius */
 
@@ -146,7 +262,7 @@ button{
     justify-content: flex-start;
 }
 .poz-right{
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 /* END Grid system */

@@ -1,17 +1,166 @@
-/* Log in / Sign up */
+/* Authentification */
 .authentification {
-    border: 1px solid gray;
-    padding: 30px;
     max-width: 500px;
+    box-shadow: 0 17px 35px 0 rgba(30, 166, 126, 0.2);
 }
 
-
-.test .one{
-    height: 20px;
-    background-color: red;
+/* Authentification - Header */
+.authentification-header-item {
+    margin: 0 25px;
+    padding-top: 45px;
 }
 
-.test .three{
-    height: 20px;
-    background-color: red;
+.authentification-btn {
+    position: relative;
+    padding: 4px 9px;
 }
+
+.authentification-btn.active {
+    font-weight: 600;
+}
+
+.authentification-btn.active:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #34c197;
+    margin-top: -0.5px;
+}
+
+/* END Authentification - Header */
+
+/* Authentification - Container */
+.authentification-container {
+    border-top: 1px solid rgba(204, 210, 207, 0.5);
+}
+
+.authentification-wrapper {
+    padding: 0 70px;
+}
+
+.authentification-container .form .row {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.authentification-container .desc {
+    padding: 10px 35px 30px 35px;
+}
+
+.authentification-content .authentification-title {
+    padding-top: 30px;
+}
+
+.authentification-content input {
+    border: 1px solid #ccd2cf;
+    padding-top: 11px;
+}
+
+.authentification-content input.input-icon {
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: 13px 50%;
+}
+
+.authentification-content input.name {
+    background-image: url("../../icons/icon-name.svg");
+}
+
+.authentification-content input.email {
+    background-image: url("../../icons/icon-email.svg");
+}
+
+.authentification-content input.password {
+    background-image: url("../../icons/icon-password.svg");
+}
+
+.authentification-content input:focus {
+    box-shadow: 0 0 2px #34c197;
+}
+
+.authentification-content .checkbox .label-desc {
+    position: relative;
+    top: -1px;
+}
+
+.authentification-forgot-passw {
+    position: relative;
+    top: -2px;
+}
+
+/* Submit btn */
+.authentification-submit-btn {
+    padding: 12px 0;
+}
+
+.authentification-submit-btn:hover {
+    background: linear-gradient(90deg, rgba(103, 230, 207, 0.9) 0%, rgba(45, 157, 161, 0.9) 100%);
+}
+
+.authentification-log-in-submit {
+    margin-top: 5px;
+}
+
+/* END Submit btn */
+
+.authentification .social-desc {
+    padding-top: 10px;
+    margin: 30px 0 15px 0;
+    border-top: 1px solid rgba(204, 210, 207, 0.5);
+}
+
+/* END Authentification - Container */
+
+/* Authentification - Footer */
+.authentification-footer-social-media {
+    margin-bottom: 20px;
+}
+
+.authentification-footer-social-media li {
+    margin: 0 7px;
+}
+
+.authentification-footer li a {
+    position: relative;
+    width: 56px;
+    height: 32px;
+}
+
+.authentification-footer li a img {
+    max-height: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.authentification-footer li.facebook a {
+    background-color: #4468b0;
+}
+
+.authentification-footer li.facebook a:hover {
+    background-color: rgba(68, 104, 176, 0.9);
+}
+
+.authentification-footer li.twitter a {
+    background-color: #2aa3ef;
+}
+
+.authentification-footer li.twitter a:hover {
+    background-color: rgba(42, 163, 239, 0.9);
+}
+
+.authentification-footer li.google a {
+    background-color: #d54b3d;
+}
+
+.authentification-footer li.google a:hover {
+    background-color: rgba(213, 75, 61, 0.9);
+}
+
+/* END Authentification - Footer */
+
+/* END Authentification */
