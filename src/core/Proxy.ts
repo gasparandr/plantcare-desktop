@@ -1,3 +1,4 @@
+///<reference path="../constants/Notifications.ts"/>
 
 
 namespace Core {
@@ -6,12 +7,16 @@ namespace Core {
 
     export class Proxy implements IProxy{
         public NAME: string = "Proxy";
-        private address: string;
+        private readonly address: string;
         private userId: string;
+        private readonly pingDelay: number;
+        private ping: any;
+        private name: string;
 
         constructor() {
             console.info( this.NAME + " has been initiated");
-            this.address = "";
+            this.address = "http://10.10.0.42:1337";
+            this.pingDelay = 2000;
         }
 
 
@@ -26,6 +31,7 @@ namespace Core {
                 let response = JSON.parse( this.responseText );
 
                 self.userId = response.userId;
+                self.name = response.name;
 
                 console.log(response);
 
@@ -42,35 +48,111 @@ namespace Core {
         }
 
         public getPlants(plantGroupId: string): void {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', this.address + "/plant-group/plants/" + plantGroupId, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
 
+                let response = JSON.parse( this.responseText );
+
+                console.log(response);
+
+                eventDispatcher.sendNotification( Notifications.PLANTS_ARRIVED, response )
+            };
+
+            xhr.send();
         }
 
         public getPlantGroups(): void {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', this.address + "/plant-groups/" + this.userId, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
+
+                let response = JSON.parse( this.responseText );
+
+                console.log(response);
+
+                eventDispatcher.sendNotification( Notifications.PLANT_GROUPS, response )
+            };
+
+            xhr.send();
+        }
+
+        public invite(plantGroupId: string): void {
 
         }
 
-        public invite(): void {
+        public getInvitations(): void {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', this.address + "/invitations/" + this.userId, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
 
-        }
+                let response = JSON.parse( this.responseText );
 
-        public getInvites(): void {
+                console.log(response);
 
+                eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+            };
+
+            xhr.send();
         }
 
         public waterPlant(plantId: string): void {
+            let xhr = new XMLHttpRequest();
+            xhr.open('PUT', this.address + "/plant/water/" + plantId, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
 
+                let response = JSON.parse( this.responseText );
+
+                console.log(response);
+
+                eventDispatcher.sendNotification( Notifications.PLANT_WATER_SUCCESS, response )
+            };
+
+            xhr.send();
         }
 
         public waterPlantGroup(plantGroupId: string): void {
+            let xhr = new XMLHttpRequest();
+            xhr.open('PUT', this.address + "/plant-group/water/" + plantGroupId, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onload = function () {
 
+                let response = JSON.parse( this.responseText );
+
+                console.log(response);
+
+                eventDispatcher.sendNotification( Notifications.PLANT_GROUP_WATER_SUCCESS, response )
+            };
+
+            xhr.send();
         }
 
         public pingForInvites(): void {
+            const self = this;
 
+            this.ping = setTimeout( function () {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', self.address + "/invitations/" + self.userId, true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onload = function () {
+
+                    let response = JSON.parse( this.responseText );
+
+                    console.log(response);
+
+                    eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+                };
+
+                xhr.send();
+            }, this.pingDelay );
         }
 
         public cancelPing(): void {
-
+            clearTimeout( this.ping );
         }
 
     }
