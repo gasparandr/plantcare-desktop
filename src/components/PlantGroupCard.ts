@@ -149,14 +149,14 @@ namespace Components {
         
                                 <div class="plant-group-card-next-watering-block grid">
                                     <!-- Next watering time -->
-                                    <div class="g-60">
+                                    <div class="g-75">
                                         <span class="f-10-13 semi-bold">Next watering: </span>
                                         <span id="plant-group-card-next-watering-${this.id}" class="plant-group-card-next-watering f-10-13 semi-bold">${this.nextWateringDate}</span>
                                     </div>
                                     <!-- END Next watering time -->
         
                                     <!-- Watering status value -->
-                                    <div class="g-40 right">
+                                    <div class="g-25 right">
                                         <span id="plant-group-card-status-${this.id}" class="plant-group-card-status f-10-13 semi-bold">${this.percent}%</span>
                                     </div>
                                     <!-- Watering status value -->
