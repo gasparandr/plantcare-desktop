@@ -36,12 +36,14 @@ namespace Core {
             switch (viewname) {
                 case Views.AUTHENTICATION :
                     console.info("Initiating AUTHENTICATION view" );
+                    document.body.classList.add("landing-page");
                     new Header();
                     new Authentication();
                     break;
 
                 case Views.MY_PLANTS :
                     console.info("Initiating MY PLANTS view" );
+                    document.body.classList.remove("landing-page");
                     this.container.innerHTML = "";
 
                     break;

@@ -13,11 +13,13 @@ namespace Core {
         private readonly pingDelay: number;
         private ping: any;
         private name: string;
+        private invitations: Array<any>;
 
         constructor() {
             console.info( this.NAME + " has been initiated");
             this.address = "http://10.10.0.42:1337";
             this.pingDelay = 2000;
+            this.invitations = [];
         }
 
 
@@ -85,6 +87,7 @@ namespace Core {
         }
 
         public getInvitations(): void {
+            const self = this;
             let xhr = new XMLHttpRequest();
             xhr.open('GET', this.address + "/invitations/" + this.userId, true);
             xhr.setRequestHeader('Content-type', 'application/json');
@@ -94,7 +97,15 @@ namespace Core {
 
                 console.log(response);
 
-                eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+                console.log("invitations length:" + self.invitations.length);
+                console.log("response length:" + response.length);
+
+                if ( self.invitations.length !== response.length ) {
+                    self.invitations = response;
+                    eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+                }
+
+
             };
 
             xhr.send();
@@ -149,7 +160,10 @@ namespace Core {
 
                     console.log(response);
 
-                    eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+                    if ( self.invitations.length !== response.length ) {
+                        self.invitations = response;
+                        eventDispatcher.sendNotification( Notifications.INVITATIONS, response )
+                    }
                 };
 
                 xhr.send();
