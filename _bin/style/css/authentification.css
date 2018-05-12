@@ -1,6 +1,17 @@
 /* Authentification */
+
+.landing-page .wrapper{
+    position: relative;
+    height: 100vh;
+    max-height: calc(100vh - 90px);
+    margin: 0 auto 0 150px;
+}
 .authentification {
-    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    max-width: 388px;
     box-shadow: 0 17px 35px 0 rgba(30, 166, 126, 0.2);
 }
 
