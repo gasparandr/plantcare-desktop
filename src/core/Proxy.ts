@@ -95,10 +95,7 @@ namespace Core {
 
                 let response = JSON.parse( this.responseText );
 
-                console.log(response);
-
-                console.log("invitations length:" + self.invitations.length);
-                console.log("response length:" + response.length);
+                // console.log(response);
 
                 if ( self.invitations.length !== response.length ) {
                     self.invitations = response;
@@ -158,7 +155,7 @@ namespace Core {
 
                     let response = JSON.parse( this.responseText );
 
-                    console.log(response);
+                    // console.log(response);
 
                     if ( self.invitations.length !== response.length ) {
                         self.invitations = response;

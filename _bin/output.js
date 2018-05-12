@@ -116,9 +116,6 @@ var Core;
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.onload = function () {
                 var response = JSON.parse(this.responseText);
-                console.log(response);
-                console.log("invitations length:" + self.invitations.length);
-                console.log("response length:" + response.length);
                 if (self.invitations.length !== response.length) {
                     self.invitations = response;
                     eventDispatcher.sendNotification(Notifications.INVITATIONS, response);
@@ -158,7 +155,6 @@ var Core;
                 xhr.setRequestHeader('Content-type', 'application/json');
                 xhr.onload = function () {
                     var response = JSON.parse(this.responseText);
-                    console.log(response);
                     if (self.invitations.length !== response.length) {
                         self.invitations = response;
                         eventDispatcher.sendNotification(Notifications.INVITATIONS, response);
@@ -277,6 +273,13 @@ var Components;
                 _this.notification.classList.toggle("active");
                 _this.notification.classList.remove("notification-alert");
                 _this.notificationDropDown.style.display = _this.notificationDropDown.style.display === 'none' ? 'block' : 'none';
+            });
+            this.notificationDropDown.addEventListener("click", function (e) {
+                e.stopPropagation();
+            });
+            window.addEventListener("click", function () {
+                _this.notificationDropDown.style.display = "none";
+                _this.notification.classList.remove("active");
             });
         };
         Header.prototype.addInvitation = function (invitation) {

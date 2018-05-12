@@ -47,7 +47,16 @@ namespace Components {
                 this.notification.classList.toggle("active");
                 this.notification.classList.remove("notification-alert");
                 this.notificationDropDown.style.display = this.notificationDropDown.style.display === 'none' ? 'block' : 'none';
-            })
+            });
+
+            this.notificationDropDown.addEventListener( "click", (e) => {
+                e.stopPropagation();
+            });
+
+            window.addEventListener( "click", () => {
+                this.notificationDropDown.style.display = "none";
+                this.notification.classList.remove("active");
+            });
         }
 
         public addInvitation(invitation: any): void {
