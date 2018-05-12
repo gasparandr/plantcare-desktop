@@ -183,6 +183,12 @@ input.input-icon {
 .f-CA53FC{
     color: #CA53FC;
 }
+.f-FB5858{
+    color: #FB5858;
+}
+.f-A458FB{
+    color: #A458FB;
+}
 /* END Font color */
 
 /* Background color */
@@ -225,6 +231,12 @@ input.input-icon {
 .bg-F9EBFF{
     background-color: #F9EBFF;
 }
+.bg-FFE4E4{
+    background-color: #FFE4E4;
+}
+.bg-F1E5FF{
+    background-color: #F1E5FF;
+}
 /* END Background color */
 
 
@@ -237,6 +249,10 @@ input.input-icon {
 }
 .rad-5{
     border-radius: 5px;
+}
+
+.rad-6{
+    border-radius: 6px;
 }
 .rad-13-5{
     border-radius: 13.5px;
@@ -254,7 +270,16 @@ input.input-icon {
 
 /* Grid  system */
 .grid{
+    -webkit-display: flex;
+    -ms-display: flex;
     display: flex;
+
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
 }
 .g-10{
     width: 10%;
@@ -275,7 +300,7 @@ input.input-icon {
     width: 30%;
 }
 .g-33{
-    width: 33.333333%;
+    width: 33.333%;
 }
 .g-40{
     width: 40%;
@@ -338,7 +363,7 @@ input.input-icon {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.profile-monogram li.profile-item:nth-child(n+2){
+.profile-monogram li.profile-item:nth-child(n+1){
     margin: 0 -4px;
 }
 /* END Profile */

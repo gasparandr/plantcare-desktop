@@ -1,0 +1,13 @@
+<svg width="9px" height="12px" viewBox="0 0 9 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-882.000000, -287.000000)" fill="#1997F0" fill-rule="nonzero">
+            <g transform="translate(860.000000, 159.000000)">
+                <g transform="translate(19.000000, 20.000000)">
+                    <g transform="translate(3.000000, 107.000000)">
+                        <path class="icon" d="M3.83415156,1.14235432 L0.539492807,6.88823069 C-0.152845778,8.10298476 -0.206319371,9.64758706 0.539492807,10.9482727 C1.66063976,12.9035426 4.15458244,13.5797513 6.10986646,12.4585902 C8.06515049,11.3374432 8.7413592,8.84351472 7.62019808,6.88821653 L4.32553933,1.14235432 C4.21670867,0.952548559 3.94296806,0.952548559 3.83415156,1.14235432 Z" id="water-drop-blue"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
