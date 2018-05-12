@@ -74,12 +74,6 @@
     padding-top: 11px;
 }
 
-.authentification-content input.input-icon {
-    background-size: 15px 15px;
-    background-repeat: no-repeat;
-    background-position: 13px 50%;
-}
-
 .authentification-content input.name {
     background-image: url("../../icons/icon-name.svg");
 }
