@@ -4,7 +4,7 @@
     background-size: cover;
     height: 100%;
 }
-.landing-page .wrapper{
+.landing-page #container{
     position: relative;
     height: 100vh;
     max-height: calc(100vh - 90px);

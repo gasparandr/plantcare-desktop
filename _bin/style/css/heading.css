@@ -1,9 +1,14 @@
 .heading{
     background-color: rgba(255,255,255, 1);
+    padding: 0 20px;
+    box-shadow: 0 2px 8px 0 rgba(52,193,151,0.15);
+
 }
 
 .landing-page .heading{
+    padding: 0;
     background-color: rgba(255,255,255, 0.5);
+    box-shadow: none;
 }
 
 .heading-container{
@@ -51,6 +56,8 @@
 }
 .profile .user-name{
     padding-right: 16px;
+    font-size: 12px;
+    line-height: 15px;
 }
 /* End Profile */
 

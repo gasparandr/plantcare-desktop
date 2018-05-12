@@ -1,14 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title>dashboard-icon</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="My-Plants" transform="translate(-409.000000, -61.000000)" fill="#777B79" fill-rule="nonzero">
-            <g id="navbar" transform="translate(409.000000, 60.000000)">
-                <g id="dashboard-btn">
-                    <path d="M6.78272652,16 L6.78272652,9.21880098 L0.00152749491,9.21880098 C0.00152749491,12.9626835 3.03884397,16 6.78272652,16 Z M5.49194348,14.5532219 C3.50071183,14.0699429 1.92852586,12.5008157 1.44830564,10.509584 L5.49194348,10.509584 L5.49194348,14.5532219 Z M8.22032847,1 C11.964211,1 14.9984688,4.03731648 14.9984688,7.78119902 C14.9984688,11.5250816 11.964211,14.562398 8.21726975,14.562398 L8.21726975,7.78119902 L1.43607072,7.78119902 C1.43607072,4.03731648 4.4733872,1 8.22032847,1 Z" id="dashboard-icon"></path>
+    <g id="dashboard-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard-2" transform="translate(-409.000000, -61.000000)" fill="#777B79" fill-rule="nonzero">
+            <g id="dashboard-3" transform="translate(409.000000, 60.000000)">
+                <g id="dashboard-4">
+                    <path class="icon" d="M6.78272652,16 L6.78272652,9.21880098 L0.00152749491,9.21880098 C0.00152749491,12.9626835 3.03884397,16 6.78272652,16 Z M5.49194348,14.5532219 C3.50071183,14.0699429 1.92852586,12.5008157 1.44830564,10.509584 L5.49194348,10.509584 L5.49194348,14.5532219 Z M8.22032847,1 C11.964211,1 14.9984688,4.03731648 14.9984688,7.78119902 C14.9984688,11.5250816 11.964211,14.562398 8.21726975,14.562398 L8.21726975,7.78119902 L1.43607072,7.78119902 C1.43607072,4.03731648 4.4733872,1 8.22032847,1 Z" id="dashboard-icon"></path>
                 </g>
             </g>
         </g>

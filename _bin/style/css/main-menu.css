@@ -1,0 +1,77 @@
+/* Main menu */
+.main-menu-container {
+    border-top: 1px solid rgba(151, 151, 151, 0.2);
+}
+.main-menu-container .wrapper{
+    position: relative;
+    width: 100%;
+    max-width: calc(100% - 280px);
+    margin: auto;
+}
+.main-menu-item{
+   padding:  0px 15px;
+    margin: 8px 0;
+}
+.main-menu-item a{
+    padding:  5px;
+}
+.main-menu-item .icon{
+    fill: #777B79;
+}
+.main-menu-item .icon.border{
+    fill: none;
+    stroke:  #777B79;
+}
+.main-menu-item.active{
+    position: relative;
+}
+.main-menu-item.active:after{
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #34C197;
+    margin-top: -5px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-menu-item.active .icon{
+    fill: #34C197;
+}
+.main-menu-item.active .icon.border{
+    fill: none;
+    stroke: #34C197;
+}
+.main-menu-item span{
+    position: relative;
+    top: -2px;
+}
+.main-menu-item.active span{
+    font-weight: 600;
+    color: #233B30;
+}
+
+/* Main menu */
+
+/* Add object btn */
+
+.add-object a{
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    box-shadow: 0 5px 8px 0 rgba(52,193,151,0.35);
+    top: 50%;
+    right: 0;
+}
+.add-object svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    z-index: 2;
+}
+/* Add object btn */
