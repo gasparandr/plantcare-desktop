@@ -7,9 +7,11 @@ electron_1.app.on("ready", function () {
     console.info("Electron initialized");
     mainWindow = new electron_1.BrowserWindow({
         width: 1600,
-        height: 1200
+        height: 1200,
+        icon: __dirname + "\\style\\icons\\plantcare-icon.png"
     });
     mainWindow.loadURL("file://" + __dirname + "/index.html");
+    mainWindow.setMenu(null);
     tray = new electron_1.Tray(__dirname + "\\style\\icons\\plantcare-icon.png");
     tray.setToolTip("Plantcare app");
     tray.on("click", function () {

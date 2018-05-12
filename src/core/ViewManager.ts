@@ -18,7 +18,7 @@ namespace Core {
 
         public initView(viewname: string): void {
             switch (viewname) {
-                case Views.Authentication :
+                case Views.AUTHENTICATION :
                     break;
                 default :
                     break;

@@ -33,6 +33,22 @@ var Core;
     }());
     Core.Observer = Observer;
 })(Core || (Core = {}));
+var Constants;
+(function (Constants) {
+    var Notifications = (function () {
+        function Notifications() {
+        }
+        Notifications.LOGIN_SUCCESS = "LOGIN_SUCCESS";
+        Notifications.LOGIN_FAILURE = "LOGIN_FAILURE";
+        Notifications.PLANT_GROUPS = "PLANT_GROUPS";
+        Notifications.INVITATIONS = "INVITATIONS";
+        Notifications.PLANT_WATER_SUCCESS = "PLANT_WATER_SUCCESS";
+        Notifications.PLANT_GROUP_WATER_SUCCESS = "PLANT_GROUP_WATER_SUCCESS";
+        Notifications.PLANTS_ARRIVED = "PLANTS_ARRIVED";
+        return Notifications;
+    }());
+    Constants.Notifications = Notifications;
+})(Constants || (Constants = {}));
 var Core;
 (function (Core) {
     var Notifications = Constants.Notifications;
@@ -154,22 +170,6 @@ var Constants;
     }());
     Constants.Views = Views;
 })(Constants || (Constants = {}));
-var Constants;
-(function (Constants) {
-    var Notifications = (function () {
-        function Notifications() {
-        }
-        Notifications.LOGIN_SUCCESS = "LOGIN_SUCCESS";
-        Notifications.LOGIN_FAILURE = "LOGIN_FAILURE";
-        Notifications.PLANT_GROUPS = "PLANT_GROUPS";
-        Notifications.INVITATIONS = "INVITATIONS";
-        Notifications.PLANT_WATER_SUCCESS = "PLANT_WATER_SUCCESS";
-        Notifications.PLANT_GROUP_WATER_SUCCESS = "PLANT_GROUP_WATER_SUCCESS";
-        Notifications.PLANTS_ARRIVED = "PLANTS_ARRIVED";
-        return Notifications;
-    }());
-    Constants.Notifications = Notifications;
-})(Constants || (Constants = {}));
 var Core;
 (function (Core) {
     var Views = Constants.Views;
@@ -181,7 +181,7 @@ var Core;
         }
         ViewManager.prototype.initView = function (viewname) {
             switch (viewname) {
-                case Views.Authentication:
+                case Views.AUTHENTICATION:
                     break;
                 default:
                     break;

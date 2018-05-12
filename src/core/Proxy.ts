@@ -1,3 +1,4 @@
+///<reference path="../constants/Notifications.ts"/>
 
 
 namespace Core {
