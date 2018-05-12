@@ -6,6 +6,7 @@ namespace Components {
         eventHandler(notification: string, data: any): void;
         registerEventInterests(): void;
         registerEventListeners(): void;
+        injectHTML(): void;
     }
 
 }

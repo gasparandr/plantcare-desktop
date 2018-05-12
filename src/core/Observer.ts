@@ -32,6 +32,11 @@ namespace Core {
         public sendNotification(notification: string, data: any) {
             const interestedEntities = this.notificationInterests[ notification ];
 
+            if ( ! interestedEntities ) {
+                console.warn("There are no entities subscribed to this notification: " + notification );
+                return;
+            }
+
             for (let i = 0; i < interestedEntities.length; i++) {
                 interestedEntities[i].eventHandler( notification, data );
             }
