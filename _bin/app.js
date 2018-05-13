@@ -31,6 +31,6 @@ electron_1.app.on("ready", function () {
         ]);
         tray.popUpContextMenu(menuConfig);
     });
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 });
 //# sourceMappingURL=app.js.map
