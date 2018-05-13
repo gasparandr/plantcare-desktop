@@ -52,17 +52,13 @@ namespace Core {
 
                 case Views.MY_PLANTS :
                     console.info("Initiating MY PLANTS view" );
-                    document.body.classList.remove("landing-page");
                     this.container.innerHTML = "";
-
-
-                    new Menu();
 
                     let plantGroupsWrapper: HTMLElement = document.createElement("div");
                     plantGroupsWrapper.id = "plant-groups-wrapper";
                     plantGroupsWrapper.className = "grid";
 
-                    document.body.appendChild( plantGroupsWrapper );
+                   this.container.appendChild( plantGroupsWrapper );
 
 
                     for (let i = 0; i < data.length; i++) {
@@ -80,6 +76,8 @@ namespace Core {
         public eventHandler(notification: string, data: any): void {
             switch (notification) {
                 case Notifications.LOGIN_SUCCESS :
+                    new Menu();
+                    document.body.classList.remove("landing-page");
                     this.initView( Views.MY_PLANTS, data.plantGroups );
                     break;
                 case Notifications.LOGIN_FAILURE :
@@ -89,6 +87,8 @@ namespace Core {
                     break;
 
                 case Notifications.INIT_MY_PLANTS :
+                    console.info("init my plants received");
+                    console.info( data );
                     this.initView( Views.MY_PLANTS, data );
                     break;
 
