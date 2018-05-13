@@ -298,6 +298,8 @@ var Components;
         };
         Header.prototype.addInvitation = function (invitation) {
             var _this = this;
+            if (invitation.accepted)
+                return;
             var inv = document.createElement("li");
             inv.id = invitation._id;
             inv.className = "notification-item grid new";

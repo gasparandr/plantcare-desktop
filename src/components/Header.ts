@@ -61,6 +61,8 @@ namespace Components {
 
         public addInvitation(invitation: any): void {
 
+            if ( invitation.accepted ) return;
+
             let inv = document.createElement("li");
             inv.id = invitation._id;
             inv.className = "notification-item grid new";
