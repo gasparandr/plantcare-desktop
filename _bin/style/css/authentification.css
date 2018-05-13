@@ -4,9 +4,9 @@
     background-size: cover;
     height: 100%;
 }
-#container{
-    max-width: 1030px;
-    margin: 0 auto;
+#container .grid{
+    max-width: 1065px;
+    margin: 20px auto 0 auto;
 }
 .landing-page #container{
     position: relative;
@@ -115,6 +115,7 @@
 
 .authentification-log-in-submit {
     margin-top: 5px;
+    outline: none;
 }
 
 /* END Submit btn */
